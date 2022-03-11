@@ -81,6 +81,11 @@ class MedicalAssistanceInLine(admin.StackedInline):
     verbose_name = _("Add Medical Assitance")
     verbose_name_plural = _("Add Medical Assitance")
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'clinic':
+            kwargs['queryset'] = Clinic.objects.exclude(available_beds__lte=0)
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
 
 @admin.register(MedicalAssistance)
 class AdminMedicalAssistance(admin.ModelAdmin):
