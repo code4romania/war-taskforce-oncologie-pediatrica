@@ -21,11 +21,11 @@ THERAPY_NEEDS_CHOICES = (
     ("CHE", _("Chemotherapy")),
     ("SUR", _("Surgical")),
     ("PAL", _("Palliative")),
-    ("MON", _("Monitoring")),
+    ("MON", _("Monitoring after Treatment")),
     ("INV", _("Diagnostic Investigation")),
     ("SUT", _("Supportive Treatment")),
     ("RAD", _("Radiotherapy")),
-    ("TRA", _("Transplant")),
+    ("TRA", _("Transplant Waitlist")),
     ("OTH", _("Other")),
 )
 
@@ -120,7 +120,7 @@ class Clinic(models.Model):
         blank=False,
     )
     therapy_services = MultiSelectField(
-        verbose_name=_("Therapy Services"),
+        verbose_name=_("Medical Services"),
         choices=THERAPY_NEEDS_CHOICES,
         blank=False,
     )
@@ -177,15 +177,15 @@ class PatientRequest(models.Model):
 
     # Identification
 
-    first_name = models.CharField(verbose_name=_("First Name"), max_length=100, blank=False)
-    last_name = models.CharField(verbose_name=_("Last Name"), max_length=100, blank=False)
+    first_name = models.CharField(verbose_name=_("Pacient First Name"), max_length=100, blank=False)
+    last_name = models.CharField(verbose_name=_("PacientLast Name"), max_length=100, blank=False)
     birth_date = models.DateField(verbose_name=_("Birth Date"), blank=False)
     sex = models.CharField(verbose_name=_("Sex"), max_length=2, choices=SEX_CHOICES, default="PAS", blank=False)
-    address = models.CharField(verbose_name=_("Address"), max_length=250, blank=False)
+    birth_place = models.CharField(verbose_name=_("Birth Place"), max_length=250, blank=False, help_text=_("Birth Place: City, Country"))
 
     # Requester
-    institution_type = models.CharField(
-        verbose_name=_("Requester Type"),
+    requester_category = models.CharField(
+        verbose_name=_("Requester Category"),
         max_length=3,
         choices=REQUESTER_TYPE,
         default="MED",
@@ -356,16 +356,16 @@ class LogisticAndSocialAssistance(models.Model):
         help_text=_("Departing from: City, Country"),
     )
     destination_location = models.CharField(
-        verbose_name=_("Pick Up Location"),
+        verbose_name=_("Destination Location"),
         max_length=200,
         blank=True,
         help_text=_("Departing from: City, Country"),
     )
     transport_details = models.TextField(verbose_name=_("Transport Details"), blank=True)
     transport_rep_external = models.BooleanField(
-        verbose_name=_("External Transport Representative"),
+        verbose_name=_("Transport Responsability"),
         default=False,
-        help_text=_("Is the transport representative external to the organization?"),
+        help_text=_("Check if the responsible is outside Dăruiește Aripi organization"),
     )
     transport_rep_external_details = models.TextField(
         verbose_name=_("External Transport Representantive Details"), blank=True
@@ -386,17 +386,17 @@ class LogisticAndSocialAssistance(models.Model):
     )
     accommodation_details = models.TextField(verbose_name=_("Accommodation Details"), null=True, blank=True)
     accommodation_rep_external = models.BooleanField(
-        verbose_name=_("External accommodation Representative"),
+        verbose_name=_("Accomodation responsibility"),
         default=False,
-        help_text=_("Is the accommodation representative external to the organization?"),
+        help_text=_("Check if the responsible is outside Dăruiește Aripi organization"),
     )
     accommodation_rep_external_details = models.TextField(
-        verbose_name=_("External Accommodation Representantive Details"), blank=True
+        verbose_name=_("External Accomodation Representative Details"), blank=True
     )
 
     # Assistance
     assistance_required = models.BooleanField(
-        verbose_name=_("Assistance Required"), default=False, help_text=_("Wether assistance is required")
+        verbose_name=_("Local Assistance Required"), default=False, help_text=_("Wether local assistance is required")
     )
     assistance_status = models.CharField(
         verbose_name=_("Assistance Status"),
@@ -406,9 +406,9 @@ class LogisticAndSocialAssistance(models.Model):
         blank=False,
     )
     assistance_rep_external = models.BooleanField(
-        verbose_name=_("External Assistance Representative"),
+        verbose_name=_("Assistance Representative"),
         default=False,
-        help_text=_("Is the assistance representative external to the organization?"),
+        help_text=_("Check if the responsible is outside Dăruiește Aripi organization"),
     )
     assistance_rep_external_details = models.TextField(
         verbose_name=_("External Assistance Representantive Details"), blank=True

@@ -345,7 +345,7 @@ class AdminPatientRequest(ImportExportModelAdmin):
                     "birth_date",
                     "get_child_age",
                     "sex",
-                    "address",
+                    "birth_place",
                 )
             },
         ),
@@ -353,7 +353,7 @@ class AdminPatientRequest(ImportExportModelAdmin):
             _("Requester Data"),
             {
                 "fields": (
-                    "institution_type",
+                    "requester_category",
                     "institution_name",
                     "requester_first_name",
                     "requester_last_name",

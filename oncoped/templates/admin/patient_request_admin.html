@@ -5,7 +5,7 @@
 <script type="text/javascript">
     let detect_category = function () {
 
-        switch ($('#id_institution_type').find('option:selected').text()) {
+        switch ($('#id_requester_category').find('option:selected').text()) {
             case "Person":
                 $('.field-institution_name').hide();
                 $('#id_institution_name').attr('value', '');
@@ -205,7 +205,7 @@
 
 
 
-    $('#id_institution_type').on('change', function () {
+    $('#id_requester_category').on('change', function () {
         detect_category();
     });
     $('#id_known_complete_diagnostic').on('change', function () {
