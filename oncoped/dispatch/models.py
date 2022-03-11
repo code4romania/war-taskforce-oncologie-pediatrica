@@ -160,7 +160,7 @@ class Clinic(models.Model):
     available_beds = models.SmallIntegerField(verbose_name=_("Available Beds"), blank=False, default=0)
 
     def __str__(self):
-        return f"{self.name}, {self.city} ({self.county}) - {self.available_beds} ({'+'.join(self.tumor_type)})"
+        return f"{self.name}, {self.city} ({self.county}) - {self.available_beds} {_('Beds')}"
 
     class Meta:
         verbose_name = _("Clinic")
