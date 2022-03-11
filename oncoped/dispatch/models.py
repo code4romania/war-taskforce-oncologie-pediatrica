@@ -97,6 +97,7 @@ CASE_STATUS_CHOICES = (
     ("R", _("Clinic is Ready for takeover")),
     ("T", _("Taken over by Clinic")),
     ("TP", _("Taken over previously, in person")),
+    ("RE", _("Redirected")),
 )
 
 LOGISTIC_STATUS_CHOICES = (
@@ -104,6 +105,10 @@ LOGISTIC_STATUS_CHOICES = (
     ("S", _("Solved")),
 )
 
+YES_NO_CHOICES = (
+    (1, _("Yes")),
+    (0, _("No")),
+)
 
 class Clinic(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -217,7 +222,7 @@ class PatientRequest(models.Model):
     diagnostic_class = models.CharField(
         verbose_name=_("Diagnostic Class"), max_length=10, choices=DIAGNOSTIC_CLASS_CHOICES, blank=True
     )
-    known_complete_diagnostic = models.BooleanField(verbose_name=_("Complete Diagnostic Known"), default=False)
+    known_complete_diagnostic = models.CharField(verbose_name=_("Complete Diagnostic Known"), choices=YES_NO_CHOICES, default=0, max_length=2)
     complete_diagnostic = models.TextField(verbose_name=_("Complete Diagnostic"), blank=True)
     date_diagnosed = models.DateField(verbose_name=_("Date Diagnosed"), blank=True, null=True)
     diagnosing_institution_name = models.CharField(
@@ -312,12 +317,10 @@ class MedicalAssistance(models.Model):
     )
     receiving_dr_full_name = models.CharField(verbose_name=_("Receiving Dr Full Name"), max_length=150, blank=True)
     comments = models.TextField(verbose_name=_("Comments"), blank=True)
-    needs_transfer = models.BooleanField(verbose_name=_("Needs Transfer"), default=False)
     international_redirect = models.BooleanField(verbose_name=_("International Redirect"), default=False)
     redirect_institution = models.CharField(verbose_name=_("Redirect Institution"), max_length=250, blank=True)
     specialty = models.CharField(verbose_name=_("Specialty"), max_length=150, blank=True)
-    town = models.CharField(verbose_name=_("Town"), max_length=150, blank=True)
-    country = models.CharField(verbose_name=_("Country"), max_length=150, blank=True)
+    location = models.TextField(verbose_name=_("Location"), max_length=250, blank=True, help_text=_("Location: City, Country"))
     reason = models.TextField(verbose_name=_("Reason"), blank=True)
 
     def __str__(self):

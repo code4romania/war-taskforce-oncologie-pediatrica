@@ -291,6 +291,8 @@ class AdminPatientRequest(ImportExportModelAdmin):
                 badge_color, badge_text = "success", _("TAKEN")
             if status == "TP":
                 badge_color, badge_text = "success", _("DIRECT CASE")
+            if status == "RE":
+                badge_color, badge_text = "success", _("REDIRECTED")
             return mark_safe(f'<span class="badge badge-{badge_color}">{badge_text}</span>')
         badge_color, badge_text = "secondary", _("NO CLINIC ASSIGNED")
         return mark_safe(f'<span class="badge badge-{badge_color}">{badge_text}</span>')
