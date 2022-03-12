@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportModelAdmin
 
 from dispatch.models import (
+    THERAPY_NEEDS_CHOICES,
     Clinic,
     Companion,
     LogisticAndSocialAssistance,
@@ -165,6 +166,20 @@ class AdminCompanion(admin.ModelAdmin):
         return {}
 
 
+class TherapyServicesListFilter(admin.SimpleListFilter):
+
+    title = _("Medical Services")
+
+    parameter_name = 'medical_services'
+
+    def lookups(self, request, model_admin):
+        return THERAPY_NEEDS_CHOICES
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(therapy_services__contains=self.value())
+        return queryset
+
 @admin.register(Clinic)
 class AdminClinic(ImportExportModelAdmin):
 
@@ -198,11 +213,13 @@ class AdminClinic(ImportExportModelAdmin):
 
     list_filter = [
         "tumor_type",
-        "therapy_services",
+        TherapyServicesListFilter,
         "name",
         "city",
         "county",
     ]
+
+    # filter_horizontal = ("therapy_services",)
 
     ordering = ("pk",)
 
