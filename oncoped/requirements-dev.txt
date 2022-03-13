@@ -22,6 +22,14 @@ blessed==1.19.1
     # via
     #   -r requirements.txt
     #   django-q
+certifi==2021.10.8
+    # via
+    #   -r requirements.txt
+    #   requests
+charset-normalizer==2.0.12
+    # via
+    #   -r requirements.txt
+    #   requests
 click==8.0.4
     # via
     #   black
@@ -101,6 +109,10 @@ greenlet==1.1.2
     #   gevent
 gunicorn==20.1.0
     # via -r requirements.txt
+idna==3.3
+    # via
+    #   -r requirements.txt
+    #   requests
 ipython==8.1.1
     # via -r requirements-dev.in
 isort==5.10.1
@@ -177,6 +189,8 @@ redis==3.5.3
     # via
     #   -r requirements.txt
     #   django-q
+requests==2.27.1
+    # via -r requirements.txt
 six==1.16.0
     # via
     #   -r requirements.txt
@@ -205,6 +219,10 @@ traitlets==5.1.1
     #   matplotlib-inline
 typing-extensions==4.1.1
     # via black
+urllib3==1.26.8
+    # via
+    #   -r requirements.txt
+    #   requests
 wcwidth==0.2.5
     # via
     #   -r requirements.txt

@@ -19,6 +19,9 @@ supervisor
 # py caching
 # pymemcache
 
+# slack error logging
+requests
+
 # database
 psycopg2<2.10
 dj-database-url

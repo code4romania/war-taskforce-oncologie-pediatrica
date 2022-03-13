@@ -22,6 +22,9 @@ env = environ.Env(
     HOME_SITE_URL=(str, ""),
     ALLOWED_HOSTS=(list, ["*"]),
     # MEMCACHED_HOST=(str, "cache:11211"),
+    SLACK_WEBHOOK_URL=(str, ""),
+    SLACK_LOGGING_COLOR=(str, ""),
+    ENABLE_SLACK_LOGGING=(str, "no"),
     RECAPTCHA_PUBLIC_KEY=(str, ""),
     RECAPTCHA_PRIVATE_KEY=(str, ""),
 )
@@ -36,7 +39,11 @@ BASE_DIR = path.join(path.dirname(path.abspath(__file__)), "../..")
 
 DEBUG = env("DEBUG") == "yes"
 ENVIRONMENT = env("ENVIRONMENT")
-ENABLE_DEBUG_TOOLBAR = bool(DEBUG and (env("ENABLE_DEBUG_TOOLBAR")) == "yes")
+ENABLE_DEBUG_TOOLBAR = DEBUG and (env("ENABLE_DEBUG_TOOLBAR")) == "yes"
+
+SLACK_WEBHOOK_URL = env("SLACK_WEBHOOK_URL")
+SLACK_LOGGING_COLOR = env("SLACK_LOGGING_COLOR")
+ENABLE_SLACK_LOGGING = env("ENABLE_SLACK_LOGGING") == "yes"
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 CORS_ORIGIN_ALLOW_ALL = False
@@ -455,10 +462,10 @@ LOGGING = {
             "level": "INFO",
             "class": "logging.StreamHandler",
         },
-        # "slack": {
-        #     "level": "ERROR",
-        #     "class": "revm_site.handlers.SlackHandler",
-        # },
+        "slack": {
+            "level": "ERROR",
+            "class": "oncoped_site.handlers.SlackHandler",
+        },
     },
     "root": {
         "handlers": ["console"],
@@ -466,10 +473,11 @@ LOGGING = {
     },
     "loggers": {
         "django": {
-            # "handlers": ["slack", "console"],
-            "handlers": ["console"],
+            "handlers": ["slack", "console"],
             "level": "INFO",
             "propagate": False,
         },
     },
 }
+
+ADMINS = (("Slack Error Logging", "not_a_real_email@code4.ro"),)

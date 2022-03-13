@@ -10,6 +10,10 @@ asgiref==3.5.0
     # via django
 blessed==1.19.1
     # via django-q
+certifi==2021.10.8
+    # via requests
+charset-normalizer==2.0.12
+    # via requests
 defusedxml==0.7.1
     # via odfpy
 diff-match-patch==20200713
@@ -61,6 +65,8 @@ greenlet==1.1.2
     # via gevent
 gunicorn==20.1.0
     # via -r requirements.in
+idna==3.3
+    # via requests
 markuppy==1.14
     # via tablib
 numpy==1.22.3
@@ -85,6 +91,8 @@ pyyaml==6.0
     # via tablib
 redis==3.5.3
     # via django-q
+requests==2.27.1
+    # via -r requirements.in
 six==1.16.0
     # via
     #   blessed
@@ -95,6 +103,8 @@ supervisor==4.2.4
     # via -r requirements.in
 tablib[html,ods,xls,xlsx,yaml]==3.2.0
     # via django-import-export
+urllib3==1.26.8
+    # via requests
 wcwidth==0.2.5
     # via blessed
 whitenoise==6.0.0
