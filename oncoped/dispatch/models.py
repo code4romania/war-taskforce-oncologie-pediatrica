@@ -26,11 +26,13 @@ THERAPY_NEEDS_CHOICES = (
     ("SUT", _("Supportive Treatment")),
     ("RAD", _("Radiotherapy")),
     ("TRA", _("Transplant Waitlist")),
+    ("ICM", _("Intensive Care Medicine")),
     ("OTH", _("Other")),
 )
 
 REQUESTER_TYPE = (
     ("MED", _("Medical Institution")),
+    ("COSU", _("Ministry of Health / COSU")),
     ("NGO", _("Non-Governmental Organization")),
     ("PER", _("Person")),
     ("COM", _("Company")),
@@ -189,7 +191,7 @@ class PatientRequest(models.Model):
     # Requester
     requester_category = models.CharField(
         verbose_name=_("Requester Category"),
-        max_length=3,
+        max_length=4,
         choices=REQUESTER_TYPE,
         default="MED",
         blank=False,
@@ -230,13 +232,15 @@ class PatientRequest(models.Model):
         verbose_name=_("Diagnostic Class"), max_length=10, choices=DIAGNOSTIC_CLASS_CHOICES, blank=True
     )
     known_complete_diagnostic = models.CharField(
-        verbose_name=_("Complete Diagnostic Known"), choices=YES_NO_CHOICES, default=0, max_length=2
+        verbose_name=_("Complete Diagnostic Known"), choices=YES_NO_CHOICES, default="0", max_length=2
     )
     complete_diagnostic = models.TextField(verbose_name=_("Complete Diagnostic"), blank=True)
     date_diagnosed = models.DateField(verbose_name=_("Date Diagnosed"), blank=True, null=True)
     diagnosing_institution_name = models.CharField(
         verbose_name=_("Diagnosing Institution Name"), max_length=150, blank=True
     )
+    main_diagnostic_icd10 = models.TextField(verbose_name=_("Main Diagnosis (ICD-10)"), blank=True)
+    comorbidities_icd10 = models.TextField(verbose_name=_("Comorbidities (ICD-10)"), blank=True)
     general_problem_description = models.TextField(
         verbose_name=_("General Problem Description"),
         help_text=_("Describe the Child's medical issue"),

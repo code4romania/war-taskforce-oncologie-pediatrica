@@ -393,6 +393,8 @@ class AdminPatientRequest(ImportExportModelAdmin):
                     "complete_diagnostic",
                     "date_diagnosed",
                     "diagnosing_institution_name",
+                    "main_diagnostic_icd10",
+                    "comorbidities_icd10",
                     "general_problem_description",
                     "medical_documents_checked",
                     "tumor_type",

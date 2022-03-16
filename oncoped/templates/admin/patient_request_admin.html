@@ -20,6 +20,8 @@
                 $('.field-complete_diagnostic').show();
                 $('.field-date_diagnosed').show();
                 $('.field-diagnosing_institution_name').show();
+                $('.field-main_diagnostic_icd10').show();
+                $('.field-comorbidities_icd10').show();
                 $('.field-general_problem_description').hide();
                 $('#id_general_problem_description').val('');
                 break;
@@ -27,9 +29,13 @@
                 $('.field-complete_diagnostic').hide();
                 $('.field-date_diagnosed').hide();
                 $('.field-diagnosing_institution_name').hide();
+                $('.field-main_diagnostic_icd10').hide();
+                $('.field-comorbidities_icd10').hide();
                 $('#id_complete_diagnostic').val('');
                 $('#id_date_diagnosed').val('');
                 $('#id_diagnosing_institution_name').val('');
+                $('#id_main_diagnostic_icd10').val('');
+                $('#id_comorbidities_icd10').val('');
                 $('.field-general_problem_description').show();
                 break;
         }
@@ -187,13 +193,13 @@
     }
 
 
-    $('#id_requester_category').change(function() {
+    $('#id_requester_category').change(function () {
         initFormFields();
     });
-    $('#id_known_complete_diagnostic').change(function() {
+    $('#id_known_complete_diagnostic').change(function () {
         initFormFields();
     });
-    $('#id_therapy_needs_8').change(function() {
+    $('#id_therapy_needs_8').change(function () {
         initFormFields();
     });
 
@@ -201,24 +207,24 @@
     $('#id_logsol_assistance-0-transport_required').change(function () {
         initFormFields();
     });
-    $('#id_logsol_assistance-0-transport_rep_external').change(function() {
+    $('#id_logsol_assistance-0-transport_rep_external').change(function () {
         initFormFields();
     });
-    $('#id_logsol_assistance-0-accommodation_required').change(function() {
+    $('#id_logsol_assistance-0-accommodation_required').change(function () {
         initFormFields();
     });
-    $('#id_logsol_assistance-0-accommodation_rep_external').change(function() {
+    $('#id_logsol_assistance-0-accommodation_rep_external').change(function () {
         initFormFields();
     });
-    $('#id_logsol_assistance-0-assistance_required').change(function() {
+    $('#id_logsol_assistance-0-assistance_required').change(function () {
         initFormFields();
     });
-    $('#id_logsol_assistance-0-assistance_rep_external').change(function() {
+    $('#id_logsol_assistance-0-assistance_rep_external').change(function () {
         initFormFields();
     });
 
     // Medical Assistance
-    $('#id_med_assistance-0-case_status').change(function() {
+    $('#id_med_assistance-0-case_status').change(function () {
         initFormFields();
     });
 
