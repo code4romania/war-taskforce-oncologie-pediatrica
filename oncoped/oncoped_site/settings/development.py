@@ -2,7 +2,7 @@ from oncoped_site.settings.base import *
 
 DEBUG = True
 ENABLE_DEBUG_TOOLBAR = env("ENABLE_DEBUG_TOOLBAR", default=True)
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 CORS_ORIGIN_ALLOW_ALL = True
 SECRET_KEY = "secret"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
