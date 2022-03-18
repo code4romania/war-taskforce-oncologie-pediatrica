@@ -18,51 +18,6 @@ from dispatch.models import (
 
 admin.site.index_template = "admin/custom_admin_index.html"
 
-
-def admin_index_custom_context(request):
-    ctx = {}
-    if request.path[3:] == "/admin/":
-        patients_count_all = PatientRequest.objects.count()
-        patients_assigned = PatientRequest.objects.filter(med_assistance__clinic__isnull=False).count()
-        patiens_unassigned = patients_count_all - patients_assigned
-
-        ctx["count_patient_requests_all"] = patients_count_all
-        ctx["count_patient_requests_assigned"] = patients_assigned
-        ctx["count_patient_requests_unassigned"] = patiens_unassigned
-        try:
-            if patients_assigned:
-                if patiens_unassigned:
-                    ctx["patient_requests_assigned_percentage"] = int(
-                        round((1 - (patiens_unassigned / patients_count_all)) * 100, 0)
-                    )
-                else:
-                    ctx["patient_requests_assigned_percentage"] = 100
-            else:
-                ctx["patient_requests_assigned_percentage"] = 0
-        except ZeroDivisionError:
-            ctx["patient_requests_assigned_percentage"] = 0
-
-        clinics_count = Clinic.objects.count()
-        all_beds = (
-            Clinic.objects.annotate(all_beds=Sum("available_beds")).values_list("all_beds", flat=True).first()
-        ) or 0
-        available_beds = all_beds - patients_assigned
-        try:
-            if all_beds:
-                beds_occupation = int(round((1 - (available_beds / all_beds)) * 100, 0))
-            else:
-                beds_occupation = 100
-        except ZeroDivisionError:
-            beds_occupation = 0
-
-        ctx["count_clinics"] = clinics_count
-        ctx["count_clinics_all_beds"] = all_beds
-        ctx["count_clinics_available_beds"] = available_beds
-        ctx["count_clinics_beds_occupation"] = beds_occupation
-
-    return ctx
-
-
 class PatientRequestFileInLine(admin.TabularInline):
     model = PatientRequestFile
     extra = 1

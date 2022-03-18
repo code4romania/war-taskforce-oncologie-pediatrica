@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-16 18:15+0200\n"
-"PO-Revision-Date: 2022-03-16 18:17+0200\n"
+"POT-Creation-Date: 2022-03-18 10:42+0200\n"
+"PO-Revision-Date: 2022-03-18 10:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -94,107 +94,107 @@ msgstr "utilizatori"
 msgid "Full Name"
 msgstr "Nume medic"
 
-#: dispatch/admin.py:69 dispatch/admin.py:441
+#: dispatch/admin.py:24 dispatch/admin.py:396
 msgid "Upload Medical Files"
 msgstr "Încărcați fișiere medicale"
 
-#: dispatch/admin.py:82 dispatch/admin.py:83 dispatch/admin.py:437
+#: dispatch/admin.py:37 dispatch/admin.py:38 dispatch/admin.py:392
 msgid "Add Medical Assitance"
 msgstr "Adaugă asistență medicală"
 
-#: dispatch/admin.py:101 dispatch/admin.py:102 dispatch/admin.py:439
+#: dispatch/admin.py:56 dispatch/admin.py:57 dispatch/admin.py:394
 msgid "Add Logistic & Social Assistance"
 msgstr "Aduagă Asistență Logistică & Socială"
 
-#: dispatch/admin.py:106 dispatch/models.py:365
+#: dispatch/admin.py:61 dispatch/models.py:365
 msgid "Transport"
 msgstr "Transport"
 
-#: dispatch/admin.py:122
+#: dispatch/admin.py:77
 msgid "Accommodation"
 msgstr "Cazare"
 
-#: dispatch/admin.py:134
+#: dispatch/admin.py:89
 msgid "Assistance"
 msgstr "Asistență"
 
-#: dispatch/admin.py:158 dispatch/admin.py:159 dispatch/admin.py:440
+#: dispatch/admin.py:113 dispatch/admin.py:114 dispatch/admin.py:395
 msgid "Add Companion"
 msgstr "Adaugă însoțitor"
 
-#: dispatch/admin.py:175 dispatch/models.py:126
+#: dispatch/admin.py:130 dispatch/models.py:126
 msgid "Medical Services"
 msgstr "Servicii medicale"
 
-#: dispatch/admin.py:240
+#: dispatch/admin.py:195
 msgid "Age will be computed once the form is saved."
 msgstr "Vârsta se va calcula o dată ce formularul este salvat."
 
-#: dispatch/admin.py:259
+#: dispatch/admin.py:214
 msgid "Assigned Clinic"
 msgstr "Clinică Alocată"
 
-#: dispatch/admin.py:290
+#: dispatch/admin.py:245
 msgid "Logistic & Social Assistance"
 msgstr "Asistență Logistică & Socială"
 
-#: dispatch/admin.py:300
+#: dispatch/admin.py:255
 msgid "Companions"
 msgstr "Însoțitori"
 
-#: dispatch/admin.py:302 dispatch/models.py:322
+#: dispatch/admin.py:257 dispatch/models.py:322
 msgid "Case Status"
 msgstr "Situația cazului"
 
-#: dispatch/admin.py:305
+#: dispatch/admin.py:260
 msgid "NO CASE STATUS"
 msgstr "FĂRĂ STATUS"
 
-#: dispatch/admin.py:308
+#: dispatch/admin.py:263
 msgid "UNALLOCATED"
 msgstr "NEALOCAT"
 
-#: dispatch/admin.py:310
+#: dispatch/admin.py:265
 msgid "ACCEPTED"
 msgstr "ACCEPTAT"
 
-#: dispatch/admin.py:312
+#: dispatch/admin.py:267
 msgid "TAKEN"
 msgstr "PRELUAT"
 
-#: dispatch/admin.py:314
+#: dispatch/admin.py:269
 msgid "DIRECT CASE"
 msgstr "CAZ DIRECT"
 
-#: dispatch/admin.py:316
+#: dispatch/admin.py:271
 msgid "REDIRECTED"
 msgstr "REDIRECȚIONAT"
 
-#: dispatch/admin.py:318
+#: dispatch/admin.py:273
 msgid "NO CLINIC ASSIGNED"
 msgstr "CLINICĂ NEASIGNATĂ"
 
-#: dispatch/admin.py:361 dispatch/admin.py:432
+#: dispatch/admin.py:316 dispatch/admin.py:387
 msgid "Identification"
 msgstr "Date identificare pacient"
 
-#: dispatch/admin.py:374 dispatch/admin.py:433
+#: dispatch/admin.py:329 dispatch/admin.py:388
 msgid "Requester Data"
 msgstr "Date Solicitant"
 
-#: dispatch/admin.py:388 dispatch/admin.py:434
+#: dispatch/admin.py:343 dispatch/admin.py:389
 msgid "Diagnostic"
 msgstr "Diagnostic"
 
-#: dispatch/admin.py:408 dispatch/admin.py:436
+#: dispatch/admin.py:363 dispatch/admin.py:391
 msgid "Child Location"
 msgstr "Locația curenta a pacientului"
 
-#: dispatch/admin.py:419 dispatch/admin.py:435
+#: dispatch/admin.py:374 dispatch/admin.py:390
 msgid "Origin Medical Institution"
 msgstr "Instituție Medicală Anterioară"
 
-#: dispatch/admin.py:438
+#: dispatch/admin.py:393
 msgid "Logistical Info"
 msgstr "Informații Logistice"
 
@@ -718,7 +718,15 @@ msgstr "Însoțitor"
 msgid "Site"
 msgstr "Site"
 
-#: oncoped_site/forms.py:58
+#: oncoped_site/dash/admin_dash.py:32
+msgid "Start Date"
+msgstr "Din Data"
+
+#: oncoped_site/dash/admin_dash.py:33
+msgid "End Date"
+msgstr "Până în Data"
+
+#: oncoped_site/forms.py:56
 msgid "What are the medical services the patient needs?"
 msgstr "Care sunt serviciile medicale de care are nevoie pacientului?"
 
@@ -759,31 +767,31 @@ msgstr "Dispecerat Oncologie Pediatrică"
 msgid "POD"
 msgstr "DOP"
 
-#: oncoped_site/settings/base.py:150
+#: oncoped_site/settings/base.py:154
 msgid "Romanian"
 msgstr "Română"
 
-#: oncoped_site/settings/base.py:151
+#: oncoped_site/settings/base.py:155
 msgid "English"
 msgstr "Engleză"
 
-#: oncoped_site/settings/base.py:152
+#: oncoped_site/settings/base.py:156
 msgid "Ukrainian"
 msgstr "Ucraineană"
 
-#: oncoped_site/settings/base.py:153
+#: oncoped_site/settings/base.py:157
 msgid "Russian"
 msgstr "Rusă"
 
-#: oncoped_site/settings/base.py:312
+#: oncoped_site/settings/base.py:341
 msgid "Home"
 msgstr "Acasă"
 
-#: oncoped_site/settings/base.py:314
+#: oncoped_site/settings/base.py:343
 msgid "External Form"
 msgstr "Formular Extern"
 
-#: oncoped_site/settings/base.py:319
+#: oncoped_site/settings/base.py:348
 msgid "A Code4Romania solution. Find Out More"
 msgstr "O soluție Code4Romania. Află mai multe"
 
@@ -795,15 +803,15 @@ msgstr "O soluție Code for Romania."
 msgid "Find out more"
 msgstr "Află mai multe"
 
-#: oncoped_site/templates/form.html:37 oncoped_site/templates/form.html:44
+#: oncoped_site/templates/form.html:37 oncoped_site/templates/form.html:43
 msgid "Errors"
 msgstr "Erori"
 
-#: oncoped_site/templates/form.html:51
+#: oncoped_site/templates/form.html:49
 msgid "Send request"
 msgstr "Trimite cerere"
 
-#: oncoped_site/urls.py:21
+#: oncoped_site/urls.py:22
 msgid "request-form/"
 msgstr "cerere-pacient/"
 

@@ -5,8 +5,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.mail import EmailMultiAlternatives
 from django.template import Context, Template
 from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
 from django.utils.translation import get_language
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView
 
 from dispatch.models import THERAPY_NEEDS_CHOICES, TUMOR_TYPE_CHOICES, PatientRequest

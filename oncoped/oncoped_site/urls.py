@@ -8,6 +8,7 @@ from django.urls import include, path, re_path
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import RedirectView
 
+from .dash.admin_dash import *
 from .views import PatientRegisterRequestCreateView
 
 admin.site.site_title = settings.ADMIN_TITLE
@@ -47,6 +48,8 @@ urlpatterns = i18n_patterns(
     path("admin/", admin.site.urls, name="admin"),
     path("logout", LogoutView.as_view(), name="logout"),
     path("i18n/", include("django.conf.urls.i18n")),
+    # DPD
+    path("dpd/", include("django_plotly_dash.urls")),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

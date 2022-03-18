@@ -1,6 +1,6 @@
 from ckeditor.fields import RichTextField
-from django.db import models
 from django.conf import settings
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 EMAIL_TEMPLATE_CHOICES = [
@@ -17,7 +17,7 @@ class EmailTemplate(models.Model):
     class Meta:
         verbose_name = _("Email template")
         verbose_name_plural = _("Email templates")
-        unique_together = ['template', 'lang']
+        unique_together = ["template", "lang"]
 
     def __str__(self):
         return f"{self.get_template_display()} ({self.get_lang_display()})"

@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "captcha",
     "ckeditor",
+    "django_plotly_dash.apps.DjangoPlotlyDashConfig",
     # project apps
     "static_custom",
     "app_account",
@@ -85,12 +86,16 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "django_plotly_dash.middleware.BaseMiddleware",
+    "django_plotly_dash.middleware.ExternalRedirectionMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 SITE_ID = 1
 
 ROOT_URLCONF = "oncoped_site.urls"
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 TEMPLATES = [
     {
@@ -103,7 +108,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "dispatch.admin.admin_index_custom_context",
             ]
         },
     }
@@ -164,7 +168,32 @@ STATIC_URL = "/static/"
 STATIC_ROOT = path.join(BASE_DIR, "static")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "django_plotly_dash.finders.DashAssetFinder",
+    "django_plotly_dash.finders.DashComponentFinder",
+    "django_plotly_dash.finders.DashAppDirectoryFinder",
+]
+
 LOCALE_PATHS = (path.join(BASE_DIR, "locale"),)
+
+PLOTLY_DASH = {
+    "view_decorator": "django_plotly_dash.access.login_required",
+}
+
+PLOTLY_COMPONENTS = [
+    # Common components
+    "dash_core_components",
+    "dash_html_components",
+    "dash_renderer",
+    # django-plotly-dash components
+    "dpd_components",
+    # static support if serving local assets
+    "dpd_static_support",
+    # Other components, as needed
+    "dash_bootstrap_components",
+]
 
 # MEMCACHED_HOST = env("MEMCACHED_HOST")
 # CACHES = {
@@ -346,17 +375,11 @@ JAZZMIN_SETTINGS = {
     # Whether to aut expand the menu
     "navigation_expanded": True,
     # Hide these apps when generating side menu e.g (auth)
-    "hide_apps": [],
+    "hide_apps": ['django_plotly_dash',],
     # Hide these models when generating side menu (e.g auth.user)
     "hide_models": [],
     # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
-    "order_with_respect_to": [
-        # "app_item",
-        # "app_item.itemoffer",
-        # "app_item.itemrequest",
-        # "app_item.category",
-        # "app_item.textilecategory",
-    ],
+    "order_with_respect_to": [],
     # Custom links to append to app groups, keyed on app name
     "custom_links": {
         # "books": [

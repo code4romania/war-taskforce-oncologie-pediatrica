@@ -1,100 +1,17 @@
 {% extends 'admin/index.html' %}
 {% load i18n admin_urls static admin_modify %}
+{%load plotly_dash%}
 
 
 {% block content %}
 
+{% plotly_header %}
 
-{% comment %} <div class="container-fluid mb-3">
-    <div class="row mb-2">
-        <div class="col">
-            <h5>{% translate "Pacient Requests" %}</h5>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h3 class="card-title" style="width: 100%; text-align: center;">
-                        {% translate "All Patient Requests" %}</h3>
-                    <h4 class="card-text" style="text-align: center;">{{ count_patient_requests_all }}</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h3 class="card-title" style="width: 100%; text-align: center;">
-                        {% translate "Assigned Patient Requests" %}</h3>
-                    <h4 class="card-text" style="text-align: center;">{{ count_patient_requests_assigned }}</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h3 class="card-title" style="width: 100%; text-align: center;">
-                        {% translate "Unassigned Patient Requests" %}</h3>
-                    <h4 class="card-text" style="text-align: center;">{{ count_patient_requests_unassigned }}</h4>
-                </div>
-            </div>
-        </div>
+<div style="width: 100%;">
+    {%plotly_direct name="OncoPedAdminDash" %}
+</div>
 
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h3 class="card-title" style="width: 100%; text-align: center;">
-                        {% translate "Assignment Progress" %}</h3>
-                    <h4 class="card-text" style="text-align: center;">{{ patient_requests_assigned_percentage }} %</h4>
-                </div>
-            </div>
-        </div>
-    </div>
+{% plotly_footer %}
 
-    <div class="row mb-2">
-        <div class="col">
-            <h5>{% translate "Clinic Beds" %}</h5>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h3 class="card-title" style="width: 100%; text-align: center;">
-                        {% translate "All Clinics" %}</h3>
-                    <h4 class="card-text" style="text-align: center;">{{ count_clinics }}</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h3 class="card-title" style="width: 100%; text-align: center;">
-                        {% translate "All Beds" %}</h3>
-                    <h4 class="card-text" style="text-align: center;">{{ count_clinics_all_beds }}</h4>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h3 class="card-title" style="width: 100%; text-align: center;">
-                        {% translate "Available Beds" %}</h3>
-                    <h4 class="card-text" style="text-align: center;">{{ count_clinics_available_beds }}</h4>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h3 class="card-title" style="width: 100%; text-align: center;">
-                        {% translate "Beds Occupation" %}</h3>
-                    <h4 class="card-text" style="text-align: center;">{{ count_clinics_beds_occupation }} %</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> {% endcomment %}
-{{ block.super }}
+{% comment %} {{ block.super }} {% endcomment %}
 {% endblock %}
