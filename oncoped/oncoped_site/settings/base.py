@@ -27,6 +27,11 @@ env = environ.Env(
     ENABLE_SLACK_LOGGING=(str, "no"),
     RECAPTCHA_PUBLIC_KEY=(str, ""),
     RECAPTCHA_PRIVATE_KEY=(str, ""),
+    USE_S3=(str, "no"),
+    AWS_ACCESS_KEY_ID=(str, ""),
+    AWS_SECRET_ACCESS_KEY=(str, ""),
+    AWS_STORAGE_BUCKET_NAME=(str, ""),
+    AWS_SUBDOMAIN=(str, "s3.amazonaws.com"),
 )
 
 ADMIN_TITLE = _("Pedriatic Oncology Dispatcher")
@@ -156,9 +161,28 @@ LANGUAGES = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-PRIVATE_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
-MEDIA_URL = "/media/"
-MEDIA_ROOT = path.join(BASE_DIR, "./public/media")
+USE_S3 = (
+    (env("USE_S3")) == "yes"
+    and env("AWS_ACCESS_KEY_ID")
+    and env("AWS_SECRET_ACCESS_KEY")
+    and env("AWS_STORAGE_BUCKET_NAME")
+)
+
+if USE_S3:
+    AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.{env("AWS_SUBDOMAIN")}'
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+    AWS_S3_FILE_OVERWRITE = False
+    PUBLIC_MEDIA_LOCATION = "media"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+else:
+    PRIVATE_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = path.join(BASE_DIR, "./public/media")
 
 STATIC_URL = "/static/"
 STATIC_ROOT = path.join(BASE_DIR, "static")
