@@ -16,12 +16,6 @@ services:
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
       - POSTGRES_DB=${DATABASE_NAME}
 
-  redis:
-    container_name: oncoped-redis
-    image: redis:alpine
-    networks:
-      - internal
-
   oncoped:
     container_name: oncoped-admin
     image: code4romania/oncologie-pediatrica:staging
@@ -37,7 +31,6 @@ services:
       - "db:db"
     depends_on:
       - db
-      - redis
 
   watchtower:
     image: containrrr/watchtower:latest

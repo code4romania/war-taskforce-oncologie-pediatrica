@@ -18,14 +18,6 @@ services:
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
       - POSTGRES_DB=${DATABASE_NAME}
 
-  redis:
-    image: redis:alpine
-    networks:
-      - internal
-    container_name: oncoped-redis
-    expose:
-      - "6379"
-
   oncoped:
     container_name: oncoped-admin
     build:
@@ -41,7 +33,6 @@ services:
       - "8070:8070"
     depends_on:
       - db
-      - redis
 
 networks:
   internal:
